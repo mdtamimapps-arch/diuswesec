@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIU SWE Unofficial Portal</title>
+    <style>
+        :root {
+            --rgb-border: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        }
+
+        @keyframes bg-glow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes rgb-anim {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 400% 0%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: bg-glow 15s ease infinite;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        .bismillah {
+            font-size: 26px;
+            margin-top: 30px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .live-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 50px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #fff;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Premium RGB Ring */
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--rgb-border);
+            background-size: 400%;
+            border-radius: 50%;
+            z-index: 0;
+            animation: rgb-anim 10s linear infinite;
+            filter: blur(5px);
+        }
+
+        .logo-circle img {
+            width: 85%;
+            height: auto;
+        }
+
+        .uni-info {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .uni-name {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin: 10px 0;
+        }
+
+        .unofficial-badge {
+            background: #ff4b2b;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .dept-title {
+            font-size: 20px;
+            color: #00d2ff;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1100px;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transition: 0.4s ease;
+            text-decoration: none;
+            color: white;
+            border: 2px solid #444;
+            overflow: hidden;
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            border-color: transparent;
+        }
+
+        .section-card:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--rgb-border);
+            background-size: 400%;
+            animation: rgb-anim 10s linear infinite;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .section-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .join-btn {
+            background: #25D366;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+    ========================================================
+    💡 HINTS / নির্দেশিকা (কিভাবে লিংক বসাবেন):
+    ১. একদম নিচের দিকে <script> ট্যাগের ভেতরে যান।
+    ২. সেখানে 'sectionLinks' নামে একটি তালিকা দেখতে পাবেন।
+    ৩. সেখানে "A": "লিংক" এর জায়গায় আপনার নির্দিষ্ট হোয়াটসঅ্যাপ গ্রুপের লিংকটি দিন।
+    ৪. এভাবে A থেকে Z পর্যন্ত সব সেকশনের লিংক আলাদাভাবে বসাতে পারবেন।
+    ======================================================== 
+    -->
+
+    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+
+    <div class="live-info" id="live-clock">
+        অপেক্ষা করুন...
+    </div>
+
+    <div class="logo-container">
+        <div class="logo-circle">
+            <img src="https://www.bing.com/th/id/OIP.67_08Sbxo33PrA2hR-wB6gHaHa?w=200&h=200&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+                alt="DIU Logo">
+        </div>
+    </div>
+
+    <div class="uni-info">
+        <div class="uni-name">Daffodil International University</div>
+        <div class="unofficial-badge">UNOFFICIAL WEBSITE</div>
+        <div class="dept-title">B.Sc. in Software Engineering (SWE)</div>
+    </div>
+
+    <div class="grid-container" id="section-grid">
+    </div>
+
+    <script>
+        // Live Date and Time Script
+        function updateClock() {
+            const now = new Date();
+            const days = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+            const dayName = days[now.getDay()];
+            const date = now.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
+            const time = now.toLocaleTimeString('bn-BD');
+
+            document.getElementById('live-clock').innerHTML = `📅 ${dayName}, ${date} | 🕒 ${time}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ==========================================
+        // 💡 HINTS / নির্দেশিকা:
+        // নিচের 'sectionLinks' অবজেক্টে প্রতিটি সেকশনের জন্য আলাদা আলাদা 
+        // হোয়াটসঅ্যাপ গ্রুপের লিংক দেওয়া আছে। 
+        // আপনি চাইলে যেকোনো সেকশনের লিংক পরিবর্তন করতে পারেন।
+        // যদি একটি সেকশনের একাধিক লিংক থাকে, তবে থার্ড ব্র্যাকেট [] এর ভেতর 
+        // কমা (,) দিয়ে লিংকগুলো বসাতে পারেন। যেমন: Section C এর উদাহরণটি দেখুন।
+        // ==========================================
+
+        const sectionLinks = {
+            "A": "https://chat.whatsapp.com/K5SmAln22nR9Ut5SwyNZvv?mode=gi_t",
+            "B": "https://chat.whatsapp.com/Jyg9zgBshADDe4WIMWKH5h",
+            "C": [
+                "https://chat.whatsapp.com/J5WofsIGvtBE5MXzUlHpUL?mode=gi_t",
+                "https://m.me/j/Aba7gQCyPvDzDrSC/?send_source=gc%3Acopy_invite_link_c"
+            ],
+            "D": "https://chat.whatsapp.com/Juik4LEhysOLDBc2hLlyh4",
+            "E": "https://chat.whatsapp.com/EgpIFPrOLr31USBOzam9ge",
+            "F": "https://chat.whatsapp.com/FWKLQjeChdOJjkQDoSe4nr",
+            "G": "https://chat.whatsapp.com/BSpN6XI2QiJ147wpD8zCPR",
+            "H": "https://chat.whatsapp.com/Dwfu9s1n9IM4FefWqerdFF?mlu=0&s=cl&p=a",
+            "I": "https://chat.whatsapp.com/IFqfy2d69kRI3G7Ns0aBcv",
+            "J": "https://chat.whatsapp.com/LH0mgQ1norO1WNoVg8hc6O",
+            "K": "https://chat.whatsapp.com/GL6xYzJgg8pL0ziZfDReUh",
+            "L": "https://chat.whatsapp.com/invite/SWE_SECTION_L",
+            "M": "https://chat.whatsapp.com/invite/SWE_SECTION_M",
+            "N": "https://chat.whatsapp.com/invite/SWE_SECTION_N",
+            "O": "https://chat.whatsapp.com/invite/SWE_SECTION_O",
+            "P": "https://chat.whatsapp.com/invite/SWE_SECTION_P",
+            "Q": "https://chat.whatsapp.com/invite/SWE_SECTION_Q",
+            "R": "https://chat.whatsapp.com/invite/SWE_SECTION_R",
+            "S": "https://chat.whatsapp.com/invite/SWE_SECTION_S",
+            "T": "https://chat.whatsapp.com/invite/SWE_SECTION_T",
+            "U": "https://chat.whatsapp.com/invite/SWE_SECTION_U",
+            "V": "https://chat.whatsapp.com/invite/SWE_SECTION_V",
+            "W": "https://chat.whatsapp.com/invite/SWE_SECTION_W",
+            "X": "https://chat.whatsapp.com/invite/SWE_SECTION_X",
+            "Y": "https://chat.whatsapp.com/invite/SWE_SECTION_Y",
+            "Z": "https://chat.whatsapp.com/invite/SWE_SECTION_Z"
+        };
+
+        const grid = document.getElementById('section-grid');
+
+        // Section Generator Script
+        Object.keys(sectionLinks).forEach(letter => {
+            const links = sectionLinks[letter];
+            const card = document.createElement('div');
+            card.className = 'section-card';
+
+            let buttonsHTML = '';
+            if (Array.isArray(links)) {
+                links.forEach((link, index) => {
+                    buttonsHTML += `<a href="${link}" target="_blank" class="join-btn" style="display:inline-block; margin-top:8px; text-decoration:none; color:white; width: 80%;">Link ${index + 1}</a>`;
+                });
+            } else {
+                buttonsHTML = `<a href="${links}" target="_blank" class="join-btn" style="display:inline-block; margin-top:8px; text-decoration:none; color:white;">Join Group</a>`;
+            }
+
+            card.innerHTML = `
+                <span class="section-name">Section ${letter}</span>
+                <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; width: 100%;">
+                    ${buttonsHTML}
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>
