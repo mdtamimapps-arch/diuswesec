@@ -154,35 +154,49 @@
         }
 
         .section-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 25px 20px;
             text-align: center;
             position: relative;
-            transition: 0.4s ease;
-            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             color: white;
-            border: 2px solid #444;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .section-card:hover {
-            transform: translateY(-10px);
-            border-color: transparent;
-        }
-
-        .section-card:hover::before {
+        /* Premium RGB border effect */
+        .section-card::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
+            border-radius: 18px;
+            padding: 2px;
             background: var(--rgb-border);
             background-size: 400%;
             animation: rgb-anim 10s linear infinite;
-            z-index: -1;
-            opacity: 0.8;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .section-card:hover::after {
+            opacity: 1;
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border-color: transparent;
         }
 
         .section-name {
@@ -193,24 +207,380 @@
         }
 
         .join-btn {
-            background: #25D366;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 13px;
+            background: linear-gradient(45deg, #00b09b, #96c93d);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
             font-weight: bold;
             text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 176, 155, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: white !important;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 85%;
+            margin-top: 5px;
+        }
+
+        .join-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 176, 155, 0.6);
+            background: linear-gradient(45deg, #96c93d, #00b09b);
+        }
+
+        .routine-btn {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+        }
+
+        .routine-btn:hover {
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+        }
+
+        .credit-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 15px 25px;
+            margin: 30px auto 10px auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 90%;
+            max-width: 650px;
+            font-size: 14px;
+            color: #ddd;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .credit-box .icon {
+            font-size: 28px;
+            white-space: nowrap;
+        }
+
+        .credit-box strong {
+            color: #ffc107;
+        }
+
+        .credit-box em {
+            color: #00d2ff;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        .designer-badge {
+            margin-top: 40px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+            color: #ddd;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .designer-badge:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00d2ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.2);
+        }
+
+        .designer-badge .highlight {
+            color: #00d2ff;
+            font-weight: 800;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+        }
+
+        .global-links-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            width: 90%;
+            max-width: 800px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .global-card {
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 15px 25px;
+            text-align: left;
+            text-decoration: none;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            flex: 1;
+            min-width: 280px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .global-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 2px;
+            background: var(--rgb-border);
+            background-size: 400%;
+            animation: rgb-anim 10s linear infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .global-card:hover::after {
+            opacity: 1;
+        }
+
+        .global-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            background: rgba(30, 30, 40, 0.8);
+        }
+
+        .global-card .card-icon {
+            font-size: 40px;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+        }
+
+        .global-card .card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .global-card .card-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .global-btn {
+            width: fit-content;
+            padding: 8px 18px;
+            font-size: 12px;
+            margin-top: 0;
+        }
+
+        body.loading {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Hacker Simulator Loader */
+        #hacker-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #050505;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: #00ff00;
+            transition: opacity 1s ease-out, visibility 1s;
+        }
+
+        .terminal-box {
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2), inset 0 0 20px rgba(0, 255, 0, 0.1);
+            background: rgba(0, 20, 0, 0.9);
+            position: relative;
+        }
+
+        .terminal-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px);
+            pointer-events: none;
+        }
+
+        .welcome-text {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff00;
+            animation: glitch 1.5s infinite;
+        }
+
+        .system-status {
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 20px;
+            border: 1px solid #00ff00;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .percentage {
+            text-align: right;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .terminal-logs {
+            height: 120px;
+            overflow: hidden;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #00ff00;
+            opacity: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 0 #ff0000, -2px 0 #0000ff;
+            }
+
+            20% {
+                text-shadow: -2px 0 #ff0000, 2px 0 #0000ff;
+            }
+
+            40% {
+                text-shadow: 2px 0 #ff0000, -2px 0 #0000ff;
+            }
+
+            60% {
+                text-shadow: -2px 0 #ff0000, 2px 0 #0000ff;
+            }
+
+            80% {
+                text-shadow: 2px 0 #ff0000, -2px 0 #0000ff;
+            }
+
+            100% {
+                text-shadow: -2px 0 #ff0000, 2px 0 #0000ff;
+            }
+        }
+
+        .contact-info {
+            display: block;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #25D366;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #ddd;
+            max-width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            line-height: 1.5;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            align-self: flex-end;
+            margin: 20px 20px 20px 0;
+            text-align: left;
+        }
+
+        .contact-info:hover {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: #25D366;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .contact-info strong {
+            color: #25D366;
+            display: inline-block;
+            margin-top: 5px;
         }
 
         @media (max-width: 600px) {
             .grid-container {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .contact-info {
+                align-self: center;
+                margin: 20px auto 10px auto;
+                max-width: 90%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="loading">
+
+    <!-- Hacker Simulator Loader -->
+    <div id="hacker-loader">
+        <div class="terminal-box">
+            <div class="welcome-text">WELCOME To diU Unofficial website</div>
+            <div class="hacker-logo-container" style="text-align: center; margin-bottom: 20px;">
+                <img src="https://i.pinimg.com/originals/58/5d/5f/585d5f202586b8cd0537e73f44b37780.png" alt="Hacker Simulator Logo" style="width: 130px; filter: drop-shadow(0 0 15px #00ff00); animation: glitch 2.5s infinite;">
+            </div>
+            <div class="system-status">SYSTEM INITIALIZATION...</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="hack-progress"></div>
+            </div>
+            <div class="percentage" id="hack-percentage">0%</div>
+            <div class="terminal-logs" id="hack-logs"></div>
+        </div>
+    </div>
 
     <!-- 
     ========================================================
@@ -241,8 +611,45 @@
         <div class="dept-title">B.Sc. in Software Engineering (SWE)</div>
     </div>
 
+    <div class="global-links-container">
+        <!-- এখানে অফিসিয়াল গ্রুপের লিংক বসাবেন (href="#" এর জায়গায়) -->
+        <a href="#" target="_blank" class="global-card">
+            <span class="card-icon">🎓</span>
+            <div class="card-text">
+                <span class="card-title">SWE Official Group</span>
+                <span class="join-btn global-btn">Join Now</span>
+            </div>
+        </a>
+
+        <!-- আনঅফিসিয়াল গ্রুপের লিংক -->
+        <a href="https://chat.whatsapp.com/JJTS3zGWhEsBk7LMfw6FiF" target="_blank" class="global-card">
+            <span class="card-icon">🚀</span>
+            <div class="card-text">
+                <span class="card-title">SWE Unofficial Group</span>
+                <span class="join-btn global-btn">Join Now</span>
+            </div>
+        </a>
+    </div>
+
     <div class="grid-container" id="section-grid">
     </div>
+
+    <div class="credit-box">
+        <span class="icon">⚠️ ©</span>
+        <div class="text">
+            <strong>সতর্কতা ও ক্রেডিট:</strong> ক্লাস রুটিনের এই লিংকটি <em>DiuRoutine</em> এর ডেভেলপার <strong>Aranya
+                Mahmud </strong>-এর কাছ থেকে এইখানে সংগ্রহ করা হয়েছে।
+        </div>
+    </div>
+
+    <div class="designer-badge">
+        <span class="highlight">Designed by MHT</span>
+    </div>
+
+    <a href="https://wa.me/8801963177023?text=Hello,%20I%20want%20to%20report%20an%20issue%20in%20DIU%20SWE%20Unofficial%20Portal." target="_blank" class="contact-info">
+        উপরের তথ্যের কোথাও যদি কোনো ভুল বা সংশোধনের প্রয়োজন হয়, তবে যোগাযোগ করুন:<br>
+        <strong>01963177023 (Only WhatsApp)</strong>
+    </a>
 
     <script>
         // Live Date and Time Script
@@ -280,23 +687,7 @@
             "G": "https://chat.whatsapp.com/BSpN6XI2QiJ147wpD8zCPR",
             "H": "https://chat.whatsapp.com/Dwfu9s1n9IM4FefWqerdFF?mlu=0&s=cl&p=a",
             "I": "https://chat.whatsapp.com/IFqfy2d69kRI3G7Ns0aBcv",
-            "J": "https://chat.whatsapp.com/LH0mgQ1norO1WNoVg8hc6O",
-            "K": "https://chat.whatsapp.com/GL6xYzJgg8pL0ziZfDReUh",
-            "L": "https://chat.whatsapp.com/invite/SWE_SECTION_L",
-            "M": "https://chat.whatsapp.com/invite/SWE_SECTION_M",
-            "N": "https://chat.whatsapp.com/invite/SWE_SECTION_N",
-            "O": "https://chat.whatsapp.com/invite/SWE_SECTION_O",
-            "P": "https://chat.whatsapp.com/invite/SWE_SECTION_P",
-            "Q": "https://chat.whatsapp.com/invite/SWE_SECTION_Q",
-            "R": "https://chat.whatsapp.com/invite/SWE_SECTION_R",
-            "S": "https://chat.whatsapp.com/invite/SWE_SECTION_S",
-            "T": "https://chat.whatsapp.com/invite/SWE_SECTION_T",
-            "U": "https://chat.whatsapp.com/invite/SWE_SECTION_U",
-            "V": "https://chat.whatsapp.com/invite/SWE_SECTION_V",
-            "W": "https://chat.whatsapp.com/invite/SWE_SECTION_W",
-            "X": "https://chat.whatsapp.com/invite/SWE_SECTION_X",
-            "Y": "https://chat.whatsapp.com/invite/SWE_SECTION_Y",
-            "Z": "https://chat.whatsapp.com/invite/SWE_SECTION_Z"
+            "J": "https://chat.whatsapp.com/LH0mgQ1norO1WNoVg8hc6O"
         };
 
         const grid = document.getElementById('section-grid');
@@ -309,8 +700,8 @@
 
             let buttonsHTML = '';
             if (Array.isArray(links)) {
-                links.forEach((link, index) => {
-                    buttonsHTML += `<a href="${link}" target="_blank" class="join-btn" style="display:inline-block; margin-top:8px; text-decoration:none; color:white; width: 80%;">Link ${index + 1}</a>`;
+                links.forEach((link, i) => {
+                    buttonsHTML += `<a href="${link}" target="_blank" class="join-btn" style="display:inline-block; margin-top:8px; text-decoration:none; color:white; width:80%;">Link ${i + 1}</a>`;
                 });
             } else {
                 buttonsHTML = `<a href="${links}" target="_blank" class="join-btn" style="display:inline-block; margin-top:8px; text-decoration:none; color:white;">Join Group</a>`;
@@ -320,10 +711,65 @@
                 <span class="section-name">Section ${letter}</span>
                 <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; width: 100%;">
                     ${buttonsHTML}
+                    <a href="https://diuroutine.com/" target="_blank" class="join-btn routine-btn" style="display:inline-block; margin-top:4px; text-decoration:none; color:white;">Class Routine</a>
                 </div>
             `;
             grid.appendChild(card);
         });
+
+        // Hacker Simulator Loader Logic
+        const loader = document.getElementById('hacker-loader');
+        const progressBar = document.getElementById('hack-progress');
+        const percentageText = document.getElementById('hack-percentage');
+        const logsContainer = document.getElementById('hack-logs');
+
+        const logs = [
+            "Bypassing mainframe security...",
+            "Decrypting SWE database...",
+            "Injecting payload into proxy servers...",
+            "Overriding local DNS...",
+            "Establishing secure connection to DIU...",
+            "Extracting official groups...",
+            "Compiling user data modules...",
+            "Access granted. Initializing UI..."
+        ];
+
+        let progress = 0;
+        const totalDuration = 6000; // 6 seconds
+        const intervalTime = 50;
+        const totalSteps = totalDuration / intervalTime;
+        let logIndex = 0;
+
+        const loaderInterval = setInterval(() => {
+            progress += (100 / totalSteps);
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loaderInterval);
+
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.visibility = 'hidden';
+                        loader.style.display = 'none';
+                        document.body.classList.remove('loading');
+                    }, 1000);
+                }, 500);
+            }
+
+            progressBar.style.width = `${progress}%`;
+            percentageText.innerText = `${Math.floor(progress)}%`;
+
+            if (Math.random() < 0.1 && logIndex < logs.length) {
+                const logEl = document.createElement('div');
+                logEl.innerText = `> ${logs[logIndex]}`;
+                logsContainer.appendChild(logEl);
+                logIndex++;
+
+                if (logsContainer.children.length > 5) {
+                    logsContainer.removeChild(logsContainer.firstChild);
+                }
+            }
+        }, intervalTime);
     </script>
 </body>
 
